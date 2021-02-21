@@ -6,6 +6,11 @@ class Categorias(models.TextChoices):
     TECH = 'TC', 'Tecnologia'
     CR = 'CR', 'Curiosidades'
     GR = 'GR', 'Geral'
+    
+class Contact(models.Model):
+    name = models.CharField(max_length=150)
+    email = models.EmailField()
+    message = models.TextField()
 
 class Post(models.Model):
     title = models.CharField(max_length=100)

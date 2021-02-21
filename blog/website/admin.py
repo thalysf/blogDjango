@@ -1,9 +1,9 @@
 from django.contrib import admin
-from .models import Post
+from .models import Post, Contact
 
 
 
-# Registra modulos para aparecer no admin 
+
 
 # Modificando layout de exibição dos posts em /admin
 class PostAdmin(admin.ModelAdmin):
@@ -13,4 +13,12 @@ class PostAdmin(admin.ModelAdmin):
     # Filtrando exibição dos posts em /admin
     #def get_queryset(self, request):
      #   return Post.objects.filter(deleted=False)
+
+# Modificando layout de exibição dos contatos em /admin
+class ContactAdmin(admin.ModelAdmin):
+    list_display = ['name', 'email', 'message'] 
+    search_fields = ['name']     
+    
+# Registra modulos para aparecer no admin 
 admin.site.register(Post, PostAdmin)
+admin.site.register(Contact, ContactAdmin)

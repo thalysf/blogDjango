@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Post
+from .models import Post, Contact
 def hello_blog(request):
     lista = ['Django', 'Python', 'Git', 'Html', 'Css', 'Banco de dados']
     list_posts = Post.objects.filter(deleted=False)
@@ -14,3 +14,12 @@ def hello_blog(request):
 def post_detail(request, id):
         post = Post.objects.get(id=id)
         return render(request, 'post_detail.html', {'post': post})
+
+def save_form(request):
+        Contact.objects.create(
+                name=request.POST['name'],
+                email=request.POST['email'],
+                message=request.POST['message']
+                )
+        return render(request, 'contact_sucess.html', {'name_contact': request.POST['name']})
+
