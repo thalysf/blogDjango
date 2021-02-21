@@ -10,6 +10,7 @@ class PostAdmin(admin.ModelAdmin):
     list_display = ['title', 'sub_title', 'full_name', 'deleted'] # listagem de posts
     search_fields = ['title', 'sub_title'] # tornando os elementos buscáveis
 
-    def get_queryset(self, request):
-        return Post.objects.filter(deleted=False)
+    # Filtrando exibição dos posts em /admin
+    #def get_queryset(self, request):
+     #   return Post.objects.filter(deleted=False)
 admin.site.register(Post, PostAdmin)

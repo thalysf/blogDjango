@@ -17,13 +17,16 @@ class Post(models.Model):
         default=Categorias.GR,
         )
     deleted = models.BooleanField(default=False)
-    # Exibe titulo do post na edição
-    def __str__(self):
+    imagem = models.ImageField(upload_to='posts', null=True, blank=True)
+    # null=True, blank=True -> torna campo não obrigatório o preenchimento
+    
+    def __str__(self): # Exibe titulo do post na edição
         return self.title
 
     def full_name(self):
         return self.title + self.sub_title
-
+    def get_category_label(self):
+        return self.get_categories_display()
     full_name.admin_order_field = 'title' #tornando ordenável full_name
 
     
